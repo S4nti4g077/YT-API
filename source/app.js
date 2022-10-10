@@ -15,14 +15,25 @@ const search = async () => {
   await axios
     .request(options)
     .then(function (response) {
-      console.log(response.data);
+      console.log(response.data.result.songs);
+      return response.data.result.songs;
     })
     .catch(function (error) {
       console.error(error);
     });
 };
 
+const YTList = document.querySelector(".YTList");
+
+// const createYTList = async (data) => {
+//   console.log(data.title);
+// const newSong = document.createElement("H1");
+// newSong.append(element.title);
+// YTList.append(newSong);
+// };
+
 submit.addEventListener("click", async function (e) {
   e.preventDefault();
-  search();
+  const responseArray = [];
+  const searchYT = search();
 });
