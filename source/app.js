@@ -1,6 +1,6 @@
 const input = document.querySelector("#input");
 const submit = document.querySelector("#submit");
-
+let responseArray = [];
 const search = async () => {
   const inputValue = input.value;
   const options = {
@@ -16,7 +16,9 @@ const search = async () => {
     .request(options)
     .then(function (response) {
       console.log(response.data.result.songs);
-      return response.data.result.songs;
+      response.data.result.songs.forEach((element) => {
+        responseArray.push(element.title);
+      });
     })
     .catch(function (error) {
       console.error(error);
@@ -34,6 +36,5 @@ const YTList = document.querySelector(".YTList");
 
 submit.addEventListener("click", async function (e) {
   e.preventDefault();
-  const responseArray = [];
-  const searchYT = search();
+  search();
 });
